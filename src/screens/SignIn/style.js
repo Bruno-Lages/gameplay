@@ -3,10 +3,14 @@ import { theme } from "../../global/styles/theme";
 
 export const style = StyleSheet.create({
     container: {
-        backgroundColor: theme.color.background,
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+
+    image: {
+        width: '100%',
+        height: 360,
     },
 
     content: {
@@ -18,13 +22,17 @@ export const style = StyleSheet.create({
         color: theme.color.heading,
         textAlign: 'center',
         fontSize: 40,
-        marginBottom: 14
+        lineHeight: 40,
+        marginBottom: 14,
+        fontFamily: theme.fonts.title700
     },
     
     subtittle: {
         color: theme.color.heading,
         textAlign: 'center',
         fontSize: 15,
-        marginBottom: 64
+        lineHeight: 25,
+        marginBottom: 64,
+        fontFamily: theme.fonts.title500,
     }
 })
