@@ -20,6 +20,7 @@ export function CategorySelect({categorySelected,
                     Svg={category.icon}
                     tittle={category.title}
                     checked={category.id === categorySelected}
+                    // hasCheckbox
                     onPress={() => setCategory(category.id)}
                     />
                     )

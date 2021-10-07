@@ -1,21 +1,25 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 import { RectButton, RectButtonProps } from "react-native-gesture-handler";
 import { theme } from "../../global/styles/theme";
 import { style } from "./style";
 import Svg from "react-native-svg";
 
-export function Category({tittle, checked, Svg, ...RectButtonProps}) {
+export function Category({tittle, hasCheckbox = false, checked, Svg, ...RectButtonProps}) {
     return (
         <RectButton {...RectButtonProps}>
             <LinearGradient
             style={style.container}
             colors={[theme.color.secondary40, theme.color.secondary70]}
             >
-                <View style={[style.content, { opacity: checked ? 1 : 0.4 }]}>
+                <LinearGradient
+                colors={[checked ? theme.color.secondary85 : theme.color.secondary50, theme.color.secondary30]}
+                style={[style.content, { opacity: checked ? 1 : 0.5 }]}>
                 
-                    <View style={ checked ? style.checked : style.check }/>
+                    {
+                        hasCheckbox && <View style={ checked ? style.checked : style.check }/>
+                    }
 
                     <Svg  
                     width={48} 
@@ -25,7 +29,7 @@ export function Category({tittle, checked, Svg, ...RectButtonProps}) {
                     { tittle }
                     </Text>
 
-                </View>
+                </LinearGradient>
             </LinearGradient>
         </RectButton>
     )

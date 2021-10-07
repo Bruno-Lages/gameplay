@@ -9,7 +9,6 @@ export const style = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 8,
-        margin: 15,
     },
 
     tittle: {
