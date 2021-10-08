@@ -4,8 +4,7 @@ import { categories } from "../../utils/categories";
 import { Category } from "../Category";
 import { style } from "./style";
 
-export function CategorySelect({categorySelected, 
-    setCategory}) {
+export function CategorySelect({categorySelected, setCategory, hasCheckbox}) {
     return (
             <ScrollView
             style={style.container}
@@ -20,7 +19,7 @@ export function CategorySelect({categorySelected,
                     Svg={category.icon}
                     tittle={category.title}
                     checked={category.id === categorySelected}
-                    // hasCheckbox
+                    hasCheckbox={hasCheckbox}
                     onPress={() => setCategory(category.id)}
                     />
                     )

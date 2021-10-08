@@ -11,20 +11,11 @@ export const style = StyleSheet.create({
         borderRadius: 8,
     },
 
-    tittle: {
+    title: {
         flex: 1,
         fontSize: 17,
         fontFamily: theme.fonts.text500,
         textAlign: 'center',
         color: theme.color.heading,
-    },
-
-    iconWrapper: {
-        width: 56,
-        height: 56,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRightWidth: 1,
-        borderRightColor: theme.color.line,
     },
 })

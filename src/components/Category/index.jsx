@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import { RectButton, RectButtonProps } from "react-native-gesture-handler";
 import { theme } from "../../global/styles/theme";
 import { style } from "./style";
