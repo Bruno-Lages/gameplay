@@ -56,5 +56,15 @@ export const style = StyleSheet.create({
         button: {
             marginVertical: 20,
             marginBottom: 56,
+        },
+
+        loadingButton: {
+        width: '100%',
+        height: 56,
+        backgroundColor: theme.color.primary,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 8,
         }
 })

@@ -1,6 +1,9 @@
-import React, {createContext, useContext, useState } from 'react';
+import React, {createContext, useContext, useEffect, useState } from 'react';
 import * as AuthSession from 'expo-auth-session';
 import { api } from '../services/api';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { COLLECTION_USERS } from '../config/database';
 
 const { SCOPE } = process.env;
 const { CLIENT_ID } = process.env;
@@ -28,7 +31,7 @@ export function AuthProvider({children}) {
             // expo function that allow a response URL
             const { type, params } = await AuthSession.startAsync({authUrl});
 
-            if (type === "success") {
+            if (type === "success" && !params.error) {
                 api.defaults.headers.authorization = `Bearer ${params.access_token}`;
                 
                 const userInfo = await api.get('/users/@me');
@@ -36,18 +39,48 @@ export function AuthProvider({children}) {
                 const firstName = userInfo.data.username.split(' ')[0];
                 userInfo.data.avatar = `${CDN_IMAGE}/avatars/${userInfo.data.id}/${userInfo.data.avatar}.png`;
                 
-                setUSer({
+                const userData = {
                     ...userInfo.data, 
                     firstName, 
                     token: params.access_token
-                })
+                }
+                
+                await AsyncStorage.setItem(COLLECTION_USERS, JSON.stringify(userData));
+
+                setUSer(userData);
                 
             }
-            setLoading(false);
         } catch{
             throw new Error('Erro na autenticação');
+        } finally {
+            setLoading(false);
         }
     }
+
+    async function signOut() {
+        setUSer({});
+        await AsyncStorage.removeItem(COLLECTION_USERS);
+    }
+
+    async function loadUserStorageData() {
+        const storage = await AsyncStorage.getItem(COLLECTION_USERS);
+
+        if(storage) {
+            const loggedUser = JSON.parse(storage);
+
+            api.defaults.headers.authorization = `Bearer ${loggedUser.token}`
+            
+            setUSer(loggedUser);
+        }
+    }
+
+    useEffect(() => {
+        // function to prevent async in useEffect
+        async function fetchData() {
+            await loadUserStorageData();
+        };
+        fetchData();
+    }, []);
 
     return (
         <AuthContext.Provider
@@ -55,6 +88,7 @@ export function AuthProvider({children}) {
             user,
             loading,
             signIn,
+            signOut,
         }}
         >
             {children}

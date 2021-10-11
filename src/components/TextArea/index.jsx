@@ -4,7 +4,7 @@ import { Text, View, TextInput } from "react-native";
 import { theme } from "../../global/styles/theme";
 import { style } from "./style";
 
-export function TextArea({title, subtitle}) {
+export function TextArea({title, subtitle, ...settings}) {
     return (
         <View>
                     
@@ -30,6 +30,7 @@ export function TextArea({title, subtitle}) {
                     numberOfLines={6}
                     autoCorrect={false}
                     style={style.textArea}
+                    {...settings}
                     />
                 </LinearGradient>
     

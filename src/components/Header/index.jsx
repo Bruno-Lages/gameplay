@@ -36,10 +36,13 @@ export function Header({title, action}) {
             </Text>
 
             {
-                action &&
+                action ?
                 <View>
                     {action}
                 </View>
+                : <View 
+                width={30}
+                />
             }
         </LinearGradient>
     )

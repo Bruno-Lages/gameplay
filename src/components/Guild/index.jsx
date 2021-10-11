@@ -15,7 +15,9 @@ export function Guild({data, ...settings}) {
         activeOpacity={0.7}
         {...settings}
         >
-            <GuildIcon />
+            <GuildIcon 
+            guildId={data.id}
+            iconId={data.icon}/>
 
             <View style={style.content}>
                 <Text style={style.title}>
