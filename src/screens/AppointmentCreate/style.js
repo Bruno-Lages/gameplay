@@ -43,11 +43,6 @@ export const style = StyleSheet.create({
             borderRadius: 8,
         },
 
-        formField: {
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-        },
-
         textArea: {
             width: '100%',
             borderWidth: 10,

@@ -12,7 +12,6 @@ import { theme } from "../../global/styles/theme";
 import {Background} from './../../components/Background';
 import { CategorySelect } from "../../components/CategorySelect";
 import { Header } from "../../components/Header";
-import { SmallInput } from "../../components/SmallInput";
 import { TextArea } from "../../components/TextArea";
 import { Button } from "../../components/Button";
 import { ModalView } from "../../components/ModalView";
@@ -20,6 +19,9 @@ import { Guilds } from "../Guilds";
 import { GuildIcon } from "../../components/GuildIcon";
 
 import { COLLECTION_APPOINTMENTS } from '../../config/database';
+
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { DataTimeForm } from "../../components/DataTimeForm";
 
 export function AppointmentCreate() {
 
@@ -128,35 +130,12 @@ export function AppointmentCreate() {
                             </View>
                         </RectButton>
         
-                        <View style={style.formField}>
-        
-                            <View style={style.column}>
-                                <Text style={style.label}>
-                                    Dia e mês
-                                </Text>
-        
-                                <SmallInput
-                                setState={setDate}
-                                separator="/"
-                                placeholder="dd/mm"
-                                />
-        
-                            </View>
-        
-                            <View style={style.column}>
-        
-                                <Text style={style.label}>
-                                    Horário
-                                </Text>
-                                
-                                <SmallInput
-                                setState={setTime}
-                                separator=":"
-                                placeholder="hh:mm"
-                                />
-            
-                            </View>
-                        </View>
+                        <DataTimeForm 
+                        date={date}
+                        setDate={setDate} 
+                        setTime={setTime}
+                        time={time}
+                        />
         
                         <TextArea
                         title="Descrição"
